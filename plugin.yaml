@@ -1,0 +1,27 @@
+name: <plugin_name>
+repository: github.com/<org_name>/<repository_name>
+version: "0.1.0"
+usage: Template
+description: |-
+  A plugin template
+platforms:
+  - selector:
+      os: darwin
+      arch: amd64
+    uri: https://github.com/<org_name>/<repository_name>/releases/download/v0.1.0/<repository_name>_0.1.0_darwin-amd64.tar.gz
+    bin: ./<plugin_name>
+  - selector:
+      os: darwin
+      arch: arm64
+    uri: https://github.com/<org_name>/<repository_name>/releases/download/v0.1.0/<repository_name>_0.1.0_darwin-arm64.tar.gz
+    bin: ./<plugin_name>
+  - selector:
+      os: linux
+      arch: amd64
+    uri: https://github.com/<org_name>/<repository_name>/releases/download/v0.1.0/<repository_name>_0.1.0_linux-amd64.tar.gz
+    bin: ./<plugin_name>
+  - selector:
+      os: linux
+      arch: arm64
+    uri: https://github.com/<org_name>/<repository_name>/releases/download/v0.1.0/<repository_name>_0.1.0_linux-arm64.tar.gz
+    bin: ./<plugin_name>
