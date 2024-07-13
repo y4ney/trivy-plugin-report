@@ -1,27 +1,30 @@
-name: <plugin_name>
-repository: github.com/<org_name>/<repository_name>
+name: report
+repository: github.com/y4ney/trivy-plugin-report
 version: "0.1.0"
+maintainer: Yaney
+output: true
+summary: A trivy plugin that can convert scan results into excel
 usage: Template
 description: |-
-  A plugin template
+  A trivy plugin that can convert scan results into excel
 platforms:
   - selector:
       os: darwin
       arch: amd64
-    uri: https://github.com/<org_name>/<repository_name>/releases/download/v0.1.0/<repository_name>_0.1.0_darwin-amd64.tar.gz
-    bin: ./<plugin_name>
+    uri: https://github.com/y4ney/trivy-plugin-report/releases/download/v0.1.0/trivy-plugin-report_0.1.0_darwin-amd64.tar.gz
+    bin: ./report
   - selector:
       os: darwin
       arch: arm64
-    uri: https://github.com/<org_name>/<repository_name>/releases/download/v0.1.0/<repository_name>_0.1.0_darwin-arm64.tar.gz
-    bin: ./<plugin_name>
+    uri: https://github.com/y4ney/trivy-plugin-report/releases/download/v0.1.0/trivy-plugin-report_0.1.0_darwin-arm64.tar.gz
+    bin: ./report
   - selector:
       os: linux
       arch: amd64
-    uri: https://github.com/<org_name>/<repository_name>/releases/download/v0.1.0/<repository_name>_0.1.0_linux-amd64.tar.gz
-    bin: ./<plugin_name>
+    uri: https://github.com/y4ney/trivy-plugin-report/releases/download/v0.1.0/trivy-plugin-report_0.1.0_linux-amd64.tar.gz
+    bin: ./report
   - selector:
       os: linux
       arch: arm64
-    uri: https://github.com/<org_name>/<repository_name>/releases/download/v0.1.0/<repository_name>_0.1.0_linux-arm64.tar.gz
-    bin: ./<plugin_name>
+    uri: https://github.com/y4ney/trivy-plugin-report/releases/download/v0.1.0/trivy-plugin-report_0.1.0_linux-arm64.tar.gz
+    bin: ./report
