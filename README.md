@@ -1,6 +1,6 @@
 # 🔍  trivy-plugin-report
 
-[English](./README.md)
+[简体中文](./README_zh.md)
 
 📊 `trivy-plugin-report` is a plugin that can convert Trivy's output in JSON format into an EXCEL file.
 
