@@ -1,8 +1,8 @@
-project_name: trivy-plugin-scan2excel
+project_name: trivy-plugin-report
 builds:
   -
     main: .
-    binary: scan2excel
+    binary: report
     ldflags:
       - -s -w
       - "-extldflags '-static'"
