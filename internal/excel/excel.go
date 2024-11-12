@@ -63,7 +63,7 @@ var (
 )
 
 // Export export excel file
-func Export(report *types.Report, filePath string, beautify bool) (err error) {
+func Export(report *types.Report, fileName string, beautify bool) (err error) {
 	var data []string
 	var (
 		f       = excelize.NewFile()
@@ -104,7 +104,7 @@ func Export(report *types.Report, filePath string, beautify bool) (err error) {
 		return xerrors.Errorf("failed to delete default sheet:%w", err)
 	}
 	if hasVuln {
-		if err = f.SaveAs(filePath); err != nil {
+		if err = f.SaveAs(fileName); err != nil {
 			return err
 		}
 	}
@@ -209,12 +209,7 @@ func setVulnSheetStyle(file *excelize.File, beautify bool) error {
 // Fixed Version, Status, Published Date, and Last Modified Date
 func parseVulnData(resultTarget string, resultType ftypes.TargetType, resultClass types.ResultClass,
 	vuln types.DetectedVulnerability) ([]string, error) {
-	var (
-		data             []string
-		publishedDate    string
-		lastModifiedDate string
-		err              error
-	)
+	var data []string
 
 	data = append(data, resultTarget)
 
@@ -245,18 +240,8 @@ func parseVulnData(resultTarget string, resultType ftypes.TargetType, resultClas
 		data = append(data, dbTypes.Statuses[vuln.Status])
 	}
 
-	publishedDate, err = utils.FormatTime(vuln.PublishedDate, false)
-	if err != nil {
-		return nil, xerrors.Errorf("failed to format published date:%w", err)
-	}
-	data = append(data, publishedDate)
-
-	lastModifiedDate, err = utils.FormatTime(vuln.LastModifiedDate, false)
-	if err != nil {
-		return nil, xerrors.Errorf("failed to format last modified date:%w", err)
-	}
-
-	return append(data, lastModifiedDate), nil
+	data = append(data, utils.FormatTime(vuln.PublishedDate, true))
+	return append(data, utils.FormatTime(vuln.LastModifiedDate, true)), nil
 }
 
 // cellName Construct the cell name according to the row number and column number.

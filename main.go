@@ -6,6 +6,7 @@ import (
 	"github.com/aquasecurity/trivy/pkg/log"
 	"github.com/aquasecurity/trivy/pkg/types"
 	"github.com/y4ney/trivy-plugin-report/internal/excel"
+	"github.com/y4ney/trivy-plugin-report/internal/markdown"
 	"os"
 	"strings"
 )
@@ -35,6 +36,11 @@ func run() error {
 		false,
 		"beautify the sheet(fill the background color of the cell according to the severity of the vulnerability.)",
 	)
+	markdownFile := flag.String(
+		"markdown-file",
+		"",
+		"specify the name of markdown file",
+	)
 	flag.Parse()
 
 	if *excelFile != "" {
@@ -44,8 +50,17 @@ func run() error {
 		if err := excel.Export(&report, *excelFile, *beautify); err != nil {
 			return err
 		}
+		log.Infof("success to export %s for %s", *excelFile, report.ArtifactName)
+	}
+	if *markdownFile != "" {
+		if !strings.HasSuffix(*markdownFile, ".md") {
+			log.Fatal("just support .md file")
+		}
+		if err := markdown.Export(&report, *markdownFile); err != nil {
+			return err
+		}
+		log.Infof("success to export %s for %s", *markdownFile, report.ArtifactName)
 	}
 
-	log.Infof("success to export %s for %s", *excelFile, report.ArtifactName)
 	return nil
 }
