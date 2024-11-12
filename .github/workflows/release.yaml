@@ -23,7 +23,7 @@ jobs:
       - name: GoReleaser
         uses: goreleaser/goreleaser-action@v5
         with:
-          version: v1.23.3
+          version: v1.22.1
           args: release -f=goreleaser.yaml --rm-dist --timeout 60m
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
